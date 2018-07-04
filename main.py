@@ -21,3 +21,12 @@ def get_model():
     ])
     return model
 
+def loss(model, x, y):
+    y_ = model(x)
+    return tf.losses.sparse_softmax_cross_entropy(labels=y, logits=y_)
+
+def grad(model, inputs, targets):
+    with tf.GradientTape() as tape:
+        loss_value = loss(model, inputs, targets)
+    return tape.gradient(loss_value, model.variables)
+    
