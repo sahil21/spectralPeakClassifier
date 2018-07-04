@@ -12,3 +12,12 @@ def parse_csv(line):
     # Last field is the label
     label = tf.reshape(parsed_line[-1], shape=())
     return features, label
+
+def get_model():
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(10, activation="relu", input_shape=(constants.num_features,)),
+        tf.keras.layers.Dense(10, activation="relu"),
+        tf.keras.layers.Dense(2)
+    ])
+    return model
+
