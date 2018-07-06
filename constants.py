@@ -12,3 +12,4 @@ FIELD_DEFAULTS = [
 ]
 
 num_features = 9 
+learning_rate = 0.01

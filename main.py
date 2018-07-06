@@ -30,3 +30,6 @@ def grad(model, inputs, targets):
         loss_value = loss(model, inputs, targets)
     return tape.gradient(loss_value, model.variables)
     
+def get_optimizer():
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=constants.learning_rate)
+    return optimizer
