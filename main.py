@@ -1,4 +1,10 @@
+from __future__ import absolute_import, division, print_function
+
+import os
+import matplotlib.pyplot as plt
+
 import tensorflow as tf
+import tensorflow.contrib.eager as tfe
 
 import constants
 
@@ -33,3 +39,15 @@ def grad(model, inputs, targets):
 def get_optimizer():
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=constants.learning_rate)
     return optimizer
+
+def main():
+
+    train_dataset_fp = "/home/sahil/Desktop/peakClassificationTest.csv"
+    train_dataset = tf.data.TextLineDataset(train_dataset_fp)
+    train_dataset = train_dataset.skip(1)
+    train_dataset = train_dataset.map(parse_csv)
+    train_dataset = train_dataset.shuffle(buffer_size=1000)
+    train_dataset = train_dataset.batch(32)
+
+
+main()
